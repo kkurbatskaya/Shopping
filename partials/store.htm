@@ -1,0 +1,49 @@
+﻿<script src="js/onClick.js" type="text/javascript"></script>
+
+<div class=".col-sm-4 show-map">Hide Map</div>
+    <div align="center" class="map">
+        <iframe src="https://www.google.com/maps/d/embed?mid=1Dw_Iueuz9b7OsK3Ntv_JhmZHSxo"></iframe>
+    </div>
+
+    <div class="wrap" align="center">
+       <input class="searching_panel" ng-model="search" placeholder="Search shop" >
+    </div>
+
+<table class="table table-bordered">
+    <tbody>
+    <tr ng-repeat="shop in store.shops | filter:search" >
+        <td width="50">
+            <div class="shop-index" align="center"> {{shop.indx}} </div>
+        </td>
+        <td class="tdCenter"><img ng-src="img/shops/{{shop.sku}}.jpg" alt="{{shop.name}}" /></td>
+        <td>
+            <b class="shops">{{shop.name}}</b><br />
+            {{shop.address}}
+            <div class="items_list">
+                <div class="show_items">
+                    <p class="show-label">Show Items</p>
+                </div>
+                <div class="show_items">
+                    <div class="arrow" id="arrow" onclick="toggleArrow()"></div>
+                </div>
+                <div class="items">
+                    <table class="table table-bordered">
+                        <tr ng-repeat="item in store.items | orderBy:'name' | filter: {shop : shop.sku} ">
+                            <td> {{item.name}} </td>
+                            <td> {{item.description}} </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </td>
+        <td class="tdRight">
+            <b>Working hours: </b><br/>
+            {{shop.schedule}}
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+
+
+
